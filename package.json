@@ -3,9 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "dev": "npm run serve",
+    "serve": "vue-cli-service serve",
+    "start": "node server.js",
+    "start:both": "concurrently \"npm:start\" \"npm:dev\""
   },
   "dependencies": {
     "express": "^4.18.2",
@@ -14,6 +17,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
+    "concurrently": "^8.0.1",
     "vite": "^4.0.0"
   }
 }
