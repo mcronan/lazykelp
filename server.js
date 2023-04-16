@@ -23,7 +23,7 @@ const ObjectModel = mongoose.model('Object', objectSchema);
 mongoose.connect('mongodb+srv://ronan:2YY7K3a1gL3IQXMy@nollendorf.5bqfxjb.mongodb.net/favven?retryWrites=true&w=majority', { useNewUrlParser: true });
 
 app.use(cors({
-    origin: 'http://localhost:5173'
+    origin: 'https://lazykelp.onrender.com'
 }));
 // Set up CORS headers
 app.use((req, res, next) => {
