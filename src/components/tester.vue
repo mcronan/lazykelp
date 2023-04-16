@@ -127,7 +127,9 @@ export default {
     async fetchForecasts() {
       try {
         //const response = await fetch('https://lazykelp.onrender.com/wave-forecasts');
-        const response = await fetch('http://localhost:3000/wave-forecasts');
+        //const response = await fetch('http://localhost:3000/wave-forecasts');
+        const serverURL = process.env.VUE_APP_SERVER_URL;
+        const response = await fetch(`${serverURL}/wave-forecasts`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
