@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: your-app-name
+    env: static
+    buildCommand: npm run start:both
+    staticPublishPath: ./dist
+    routes:
+      - type: rewrite
+        source: /* # Capture all routes
+        destination: /index.html # Redirect to index.html
