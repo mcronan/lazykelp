@@ -5,7 +5,7 @@
   "scripts": {
     "build": "vite build",
     "preview": "vite preview",
-    "dev": "npm run serve",
+    "dev": "npm run dev",
     "serve": "vue-cli-service serve",
     "start": "node server.js",
     "start:both": "concurrently \"npm:start\" \"npm:dev\""
