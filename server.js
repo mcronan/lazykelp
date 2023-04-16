@@ -34,7 +34,8 @@ app.use((req, res, next) => {
     next();
 });
 
-// Define a route that retrieves all wave forecasts from the database
+// Define a route th
+// at retrieves all wave forecasts from the database
 app.get('/wave-forecasts', async (req, res) => {
     console.log("https request called")
     try {
@@ -49,4 +50,5 @@ app.get('/wave-forecasts', async (req, res) => {
 
 
 // Start the server
-app.listen(3000, () => console.log('Server started on port 3000'));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
