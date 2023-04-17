@@ -19,7 +19,7 @@ import SurfforecastMagic from "@/components/forecasts.vue";
 
 
     <h1 class="title"> Lazy Kelp</h1>
-    <h3> Only 4* + 5* forecasts </h3>
+    <h3> 7-day forecasts. Only 4* + 5*. </h3>
     <h4> {{randomString}} </h4>
   </div>
 
