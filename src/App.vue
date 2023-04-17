@@ -1,33 +1,29 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+
 import SurfforecastMagic from "@/components/forecasts.vue";
 
 
 </script>
 
 <template>
-<!--  <header>-->
-<!--&lt;!&ndash;    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />&ndash;&gt;-->
 
-<!--    <div class="wrapper">-->
-<!--&lt;!&ndash;      <HelloWorld msg="You did it!" />&ndash;&gt;-->
-<!--    </div>-->
-<!--  </header>-->
   <main class="margin-bottom">
-  <div class="navbar">
+    <div class="navbar">
 
 
-    <h1 class="title"> Lazy Kelp</h1>
-    <h3> 7-day forecasts. Only 4* + 5*. </h3>
-    <h4> {{randomString}} </h4>
-  </div>
+      <!--    <h1 class="title"> Lazy Kelp</h1>-->
+      <div class="logo-holder">
+        <img src="../public/lazykelplogo.png" alt="Lazy Kelp Logo">
+      </div>
+      <h3> 7-day forecasts. Only 4* + 5*. </h3>
+      <h4> {{ randomString }} </h4>
+    </div>
 
 
-<!--    <SurfForecast />&lt;!&ndash;&ndash;&gt;-->
-    <SurfforecastMagic />
-<!--    <TheWelcome />-->
- </main>
+    <!--    <SurfForecast />&lt;!&ndash;&ndash;&gt;-->
+    <SurfforecastMagic/>
+    <!--    <TheWelcome />-->
+  </main>
 </template>
 
 <script>
@@ -74,6 +70,20 @@ header {
   /*color: white;*/
   /*width: 100%*/
 }
+
+.logo-holder {
+  margin-top: 20px;
+}
+
+.logo-holder img {
+  width: 200px;
+  height: 55px;
+  display: block;
+  object-fit: contain;
+  margin-left: -11px;
+}
+
+
 
 @media (min-width: 1024px) {
   header {
