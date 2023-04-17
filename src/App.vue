@@ -51,6 +51,7 @@ export default {
   font-size: 46px;
   font-family: "Alkatra", "sans-serif";
   color: rgb(38, 170, 57);
+  margin-top: 15px;
 }
 
 header {
