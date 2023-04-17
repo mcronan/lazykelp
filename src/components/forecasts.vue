@@ -1,5 +1,4 @@
 <template>
-
   <div v-for="(group, spot) in groupedForecasts" :key="spot">
     <h3 class="spot">{{ spot.replace('Surf Report and Forecast', '').replace('Nearby Spots', '') }}</h3>
     <div v-for="(dayGroup, day) in group" :key="day">
@@ -62,6 +61,13 @@
 </template>
 
 <script>
+function formatDateToDDMM(date) {
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  return `${day}/${month}`;
+}
+
+console.log("this is the script")
 export default {
   data() {
     return {
@@ -69,27 +75,54 @@ export default {
     };
   },
   computed: {
+    //
+    // filteredForecasts() {
+    //   const today = new Date();
+    //   const todayDate = today.getDate();
+    //   const todayMonth = today.getMonth() + 1;
+    //   const dateFilter = new RegExp(`\\b(${todayDate}|0${todayDate})/(${todayMonth}|0${todayMonth})`);
+    //
+    //   return this.forecasts.filter((forecast) => {
+    //     const forecastDate = forecast.dayDate.match(dateFilter);
+    //     if (forecastDate) {
+    //       const [day, month] = forecastDate[0].split('/');
+    //       const forecastDateObj = new Date(today.getFullYear(), parseInt(month) - 1, parseInt(day));
+    //       return forecastDateObj >= today;
+    //     }
+    //     return false;
+    //   });
+    // },
 
     filteredForecasts() {
-      const today = new Date();
-      const todayDate = today.getDate();
-      const todayMonth = today.getMonth() + 1;
-      const dateFilter = new RegExp(`\\b(${todayDate}|0${todayDate})/(${todayMonth}|0${todayMonth})`);
+      const currentDate = new Date();
+      const currentDateString = formatDateToDDMM(currentDate);
 
       return this.forecasts.filter((forecast) => {
-        const forecastDate = forecast.dayDate.match(dateFilter);
-        if (forecastDate) {
-          const [day, month] = forecastDate[0].split('/');
-          const forecastDateObj = new Date(today.getFullYear(), parseInt(month) - 1, parseInt(day));
-          return forecastDateObj >= today;
-        }
-        return false;
+        const forecastDayMonth = forecast.dayDate.split(' ')[1];
+        // Check if the forecast date is on or after the current date
+        return forecastDayMonth >= currentDateString;
       });
     },
 
+    // filteredForecasts() {
+    //   console.log("hello")
+    //   const today = new Date();
+    //   const todayMonth = String(today.getMonth() + 1).padStart(2, '0');
+    //   const todayDate = String(today.getDate()).padStart(2, '0');
+    //   const todayString = `${todayMonth}${todayDate}`;
+    //   console.log(todayString)
+    //
+    //   return this.forecasts.filter((forecast) => {
+    //     const [day, month] = forecast.dayDate.match(/(\d{1,2})\/(\d{1,2})/);
+    //     const forecastDateString = `${month.padStart(2, '0')}${day.padStart(2, '0')}`;
+    //
+    //     return forecastDateString >= todayString;
+    //   });
+    // },
     groupedForecasts() {
+      console.log("grouped")
       const groups = {};
-      this.forecasts.forEach((forecast) => {
+      this.filteredForecasts.forEach((forecast) => {
         if (!groups[forecast.spot]) {
           groups[forecast.spot] = {};
         }
@@ -127,11 +160,8 @@ export default {
     async fetchForecasts() {
       try {
         const response = await fetch('https://lazykelp2.onrender.com/wave-forecasts');
-       // const response = await fetch('http://localhost:3000/wave-forecasts');
-       // const serverURL = process.env.VUE_APP_SERVER_URL;
-        //const serverURL = 'https://lazykelp.onrender.com';
+        //const response = await fetch('http://localhost:3000/wave-forecasts');
 
-        //const response = await fetch(`${serverURL}/wave-forecasts`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

@@ -1,8 +1,8 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
-import SurfForecast from './components/surfforecast.vue'
-import SurfforecastMagic from "@/components/tester.vue";
+import SurfforecastMagic from "@/components/forecasts.vue";
+
 
 </script>
 
@@ -14,12 +14,13 @@ import SurfforecastMagic from "@/components/tester.vue";
 <!--&lt;!&ndash;      <HelloWorld msg="You did it!" />&ndash;&gt;-->
 <!--    </div>-->
 <!--  </header>-->
-  <main>
+  <main class="margin-bottom">
   <div class="navbar">
 
 
     <h1 class="title"> Lazy Kelp</h1>
     <h3> Only 4* + 5* forecasts </h3>
+    <h4> {{randomString}} </h4>
   </div>
 
 
@@ -29,9 +30,28 @@ import SurfforecastMagic from "@/components/tester.vue";
  </main>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      strings: ["Three stars or less? It'll be a mess.", "Just two star? Time for the bar.", "Five star today? Keep the pint away.", "Pitted, so pitted."],
+    };
+  },
+  computed: {
+    randomString() {
+      return this.strings[Math.floor(Math.random() * this.strings.length)];
+    },
+  },
+};
+</script>
+
 <style scoped>
 header {
   line-height: 1.5;
+}
+
+.margin-bottom {
+  margin-bottom: 70px;
 }
 
 .logo {
