@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 
@@ -46,7 +47,16 @@ app.get('/wave-forecasts', async (req, res) => {
 });
 
 
-
-// Start the server
+app.use(express.static(path.join(__dirname, 'dist')));
+//app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'dist', 'index.html')));
+app.get('*', (req, res, next) => {
+    if (req.path.match(/\..*/)) {
+        // If the request has a file extension, let the static middleware handle it
+        next();
+    } else {
+        // Otherwise, serve the index.html file
+        res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+    }
+});// Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
