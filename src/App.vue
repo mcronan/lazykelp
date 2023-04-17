@@ -46,6 +46,13 @@ export default {
 </script>
 
 <style scoped>
+
+.title {
+  font-size: 46px;
+  font-family: "Alkatra", "sans-serif";
+  color: rgb(38, 170, 57);
+}
+
 header {
   line-height: 1.5;
 }

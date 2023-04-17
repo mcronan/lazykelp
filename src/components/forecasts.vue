@@ -75,23 +75,6 @@ export default {
     };
   },
   computed: {
-    //
-    // filteredForecasts() {
-    //   const today = new Date();
-    //   const todayDate = today.getDate();
-    //   const todayMonth = today.getMonth() + 1;
-    //   const dateFilter = new RegExp(`\\b(${todayDate}|0${todayDate})/(${todayMonth}|0${todayMonth})`);
-    //
-    //   return this.forecasts.filter((forecast) => {
-    //     const forecastDate = forecast.dayDate.match(dateFilter);
-    //     if (forecastDate) {
-    //       const [day, month] = forecastDate[0].split('/');
-    //       const forecastDateObj = new Date(today.getFullYear(), parseInt(month) - 1, parseInt(day));
-    //       return forecastDateObj >= today;
-    //     }
-    //     return false;
-    //   });
-    // },
 
     filteredForecasts() {
       const currentDate = new Date();
@@ -104,23 +87,7 @@ export default {
       });
     },
 
-    // filteredForecasts() {
-    //   console.log("hello")
-    //   const today = new Date();
-    //   const todayMonth = String(today.getMonth() + 1).padStart(2, '0');
-    //   const todayDate = String(today.getDate()).padStart(2, '0');
-    //   const todayString = `${todayMonth}${todayDate}`;
-    //   console.log(todayString)
-    //
-    //   return this.forecasts.filter((forecast) => {
-    //     const [day, month] = forecast.dayDate.match(/(\d{1,2})\/(\d{1,2})/);
-    //     const forecastDateString = `${month.padStart(2, '0')}${day.padStart(2, '0')}`;
-    //
-    //     return forecastDateString >= todayString;
-    //   });
-    // },
     groupedForecasts() {
-      console.log("grouped")
       const groups = {};
       this.filteredForecasts.forEach((forecast) => {
         if (!groups[forecast.spot]) {
@@ -159,8 +126,8 @@ export default {
 
     async fetchForecasts() {
       try {
-        const response = await fetch('https://lazykelp2.onrender.com/wave-forecasts');
-        //const response = await fetch('http://localhost:3000/wave-forecasts');
+       // const response = await fetch('https://lazykelp2.onrender.com/wave-forecasts');
+        const response = await fetch('http://localhost:3000/wave-forecasts');
 
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -218,6 +185,7 @@ export default {
   margin-bottom: -18px;
   margin-top: 30px;
   text-align: left;
+  color: rgb(46, 112, 161);
 }
 
 .forecast-row {
@@ -318,7 +286,6 @@ export default {
 }
 
 .title {
-  margin-top: 30px;
   font-weight: bold;
 }
 
