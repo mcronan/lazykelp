@@ -12,7 +12,7 @@
       <div v-for="(forecast, index) in dayGroup" class="colorit">
         <div v-if="forecast.hour !== '12am' && forecast.hour !== '3am'" class="forecast-row " :key="forecast._id">
           <div class="forecast-col wide-hour">{{ forecast.hour }}</div>
-          <div class="forecast-col wide-swell">{{ forecast.swell.replace('ft-', 'ft') }}</div>
+          <div class="forecast-col wide-swell">{{forecast.swell ? forecast.swell.replace('ft-', 'ft') : '' }}</div>
           <div class="forecast-col wide-link">
             <a :href="forecast.link" target="_blank">View Report</a>
           </div>
@@ -67,7 +67,6 @@ function formatDateToDDMM(date) {
   return `${day}/${month}`;
 }
 
-console.log("this is the script")
 export default {
   data() {
     return {
@@ -126,7 +125,7 @@ export default {
 
     async fetchForecasts() {
       try {
-        const response = await fetch('https://lazykelp2.onrender.com/wave-forecasts');
+         const response = await fetch('https://lazykelp2.onrender.com/wave-forecasts');
         //const response = await fetch('http://localhost:3000/wave-forecasts');
 
         if (!response.ok) {
