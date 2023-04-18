@@ -16,7 +16,6 @@ import SurfforecastMagic from "@/components/forecasts.vue";
       </div>
       <h3> 7-day forecasts. Only 4* + 5*. </h3>
       <h4> {{ randomString }} </h4>
-      <h5> # / 15 spots are looking good </h5>
     </div>
 
 
