@@ -64,7 +64,7 @@
 function formatDateToDDMM(date) {
   const day = String(date.getDate()).padStart(2, '0');
   const month = String(date.getMonth() + 1).padStart(2, '0');
-  return `${day}/${month}`;
+  return `${day}/${month}/2022`;
 }
 
 export default {
@@ -78,15 +78,19 @@ export default {
     filteredForecasts() {
       const currentDate = new Date();
       const currentDateString = formatDateToDDMM(currentDate);
-
+      console.log(this.forecasts)
       return this.forecasts.filter((forecast) => {
         const forecastDayMonth = forecast.dayDate.split(' ')[1];
+        const foreCastTwo = forecastDayMonth + '/2022';
+        console.log(foreCastTwo)
+        console.log("current " + currentDateString)
         // Check if the forecast date is on or after the current date
-        return forecastDayMonth >= currentDateString;
+        return forecastDayMonth <= foreCastTwo;
       });
     },
 
     groupedForecasts() {
+      console.log(this.filteredForecasts)
       const groups = {};
       this.filteredForecasts.forEach((forecast) => {
         if (!groups[forecast.spot]) {
@@ -125,13 +129,14 @@ export default {
 
     async fetchForecasts() {
       try {
-         const response = await fetch('https://lazykelp2.onrender.com/wave-forecasts');
-        //const response = await fetch('http://localhost:3000/wave-forecasts');
+         //const response = await fetch('https://lazykelp2.onrender.com/wave-forecasts');
+        const response = await fetch('http://localhost:3000/wave-forecasts');
 
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
+        //console.log(data)
         this.forecasts = data;
       } catch (err) {
         console.error(err);
